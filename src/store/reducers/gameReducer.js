@@ -9,7 +9,7 @@ const initialState = {
 export const gameReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    case actionType.SET_GAMES_ERROR:
+    case actionType.SET_GAMES:
       return {
         ...state,
         movies: [],

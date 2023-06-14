@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const actionType = {
-  SET_GEMES: "SET_GAMES",
+  SET_GAMES: "SET_GAMES",
   SET_GAMES_SUCCESS: "SET_GAMES_SUCCESS",
   SET_GAMES_ERROR: "SET_GAMES_ERROR",
 };
@@ -9,7 +9,7 @@ export const actionType = {
 export const actionGames = {
   getGames: () => {
     return async (dispatch) => {
-      dispatch({ type: actionType.SET_GEMES });
+      dispatch({ type: actionType.SET_GAMES });
       await axios
         .get(
           `https://api.rawg.io/api/games?key=3fc1488daffe4381b255782d5561a3a9`
@@ -23,7 +23,7 @@ export const actionGames = {
         .catch((err) => {
             dispatch({
                 type: actionType.SET_GAMES_ERROR,
-                payload: console.error()
+                payload: err
             })
         })
     };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
-import "./Header.scss";
+import "./Header.css";
 import Input from "../Input/Input";
 
 function Header() {
@@ -14,12 +14,14 @@ function Header() {
           </Link>
         </div>
         <Input />
-        <div className="header-item header-login">
-          <div>
-            <CgProfile />
+        <Link to={"/profile"}>
+          <div className="header-item header-login">
+            <div>
+              <CgProfile />
+            </div>
+            <span>Login</span>
           </div>
-          <span>Login</span>
-        </div>
+        </Link>
       </div>
     </header>
   );

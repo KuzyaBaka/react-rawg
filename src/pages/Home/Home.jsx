@@ -15,24 +15,15 @@ function Home() {
 
   console.log(games);
   return (
-    <Box sx={{ width: "100%" }}>
-      <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 3, md: 3 }}>
+    <>
         {!loading ? (
           games.map((i) => {
-            return (
-              <Grid
-                item
-                xs={3}
-              >
-                <GameCard name={i.name} img={i.background_image} />
-              </Grid>
-            );
+            return <GameCard name={i.name} img={i.background_image} />;
           })
         ) : (
           <p>loading</p>
         )}
-      </Grid>
-    </Box>
+    </>
   );
 }
 

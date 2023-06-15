@@ -12,7 +12,7 @@ export const gameReducer = (state = initialState, action) => {
     case actionType.SET_GAMES:
       return {
         ...state,
-        movies: [],
+        games: [],
         loading: true,
         error: false,
       };
@@ -30,7 +30,7 @@ export const gameReducer = (state = initialState, action) => {
       };
     default:
       return {
-        state,
+        ...state,
       };
   }
 };

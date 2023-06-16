@@ -4,7 +4,7 @@ function Input() {
   
 
   return (
-    <div className='header-item header_item-search'>
+    <div>
         <input type='text' placeholder='Search' className='search'/>
     </div>
   )

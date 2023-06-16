@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import "./Header.css";
 import Input from "../Input/Input";
+import { AppBar, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
 
 function Header() {
-  return (
-    <header>
+  {
+    /* <header>
       <div className="header-wrapper">
         <div className="header-item">
           <Link to={"/"}>
@@ -23,7 +24,42 @@ function Header() {
           </div>
         </Link>
       </div>
-    </header>
+    </header> */
+  }
+  const theme = createTheme({
+    palette: {
+      background: {
+        paper: "#292929",
+      },
+      text: {
+        main: "#ffffff",
+      },
+      item: {
+        main: "#ffffff"
+      },
+    },
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <AppBar
+        position="static"
+        sx={{
+          bgcolor: "background.paper",
+          color: "text.",
+        }}
+      >
+        <Toolbar>
+          <Typography>
+            RAWG
+          </Typography>
+          <Input/>
+          <IconButton>
+            
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+    </ThemeProvider>
   );
 }
 

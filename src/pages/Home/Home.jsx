@@ -15,15 +15,21 @@ function Home() {
 
   console.log(games);
   return (
-    <>
+    <main className="classes.main">
+      <Grid container spacing={2} justifyContent="right">
         {!loading ? (
           games.map((i) => {
-            return <GameCard name={i.name} img={i.background_image} />;
+            return (
+              <Grid item md={3} sm={6} xs={12} sx={{border : '1px solid red'}}>
+                <GameCard name={i.name} img={i.background_image} />
+              </Grid>
+            );
           })
         ) : (
           <p>loading</p>
         )}
-    </>
+      </Grid>
+    </main>
   );
 }
 

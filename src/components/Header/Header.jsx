@@ -1,44 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
 import "./Header.css";
 import Input from "../Input/Input";
-import { AppBar, IconButton, ThemeProvider, Toolbar, Typography, createTheme } from "@mui/material";
+import {
+  AppBar,
+  IconButton,
+  ThemeProvider,
+  Toolbar,
+  Typography,
+  createTheme,
+} from "@mui/material";
+import theme from '../theme/theme'
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useDispatch } from "react-redux";
+import { actionGames } from "../../store/actions/gameAction";
 
 function Header() {
-  {
-    /* <header>
-      <div className="header-wrapper">
-        <div className="header-item">
-          <Link to={"/"}>
-            <p className="item-link">RAWG</p>
-          </Link>
-        </div>
-        <Input />
-        <Link to={"/profile"}>
-          <div className="header-item header-login">
-            <div>
-              <CgProfile />
-            </div>
-            <span>Login</span>
-          </div>
-        </Link>
-      </div>
-    </header> */
+  const dispatch = useDispatch()
+
+  const [search, setSearch] = useState(null)
+
+  const handleOnSearchChange = (e) => {
+    if (search) {
+      dispatch(actionGames.getGamesSearch(search))
+    }
+    setSearch(e.target.value)
   }
-  const theme = createTheme({
-    palette: {
-      background: {
-        paper: "#292929",
-      },
-      text: {
-        main: "#ffffff",
-      },
-      item: {
-        main: "#ffffff"
-      },
-    },
-  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,16 +33,19 @@ function Header() {
         position="static"
         sx={{
           bgcolor: "background.paper",
-          color: "text.",
+          color: "text",
+          mb: "20px",
         }}
       >
         <Toolbar>
-          <Typography>
-            RAWG
-          </Typography>
-          <Input/>
+          <Link to={'/'}>
+            <Typography variant="h5" component="span">
+              RAWG
+            </Typography>
+          </Link>
+          <Input onSearchChange={handleOnSearchChange} />
           <IconButton>
-            
+            <AccountCircleIcon color="item" />
           </IconButton>
         </Toolbar>
       </AppBar>

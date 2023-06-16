@@ -1,35 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionGames, actionType } from "../../store/actions/gameAction";
+import { actionGames } from "../../store/actions/gameAction";
 import GameCard from "../../components/Card/GameCard";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { Container, Pagination } from "@mui/material";
 
 function Home() {
   const { loading, games } = useSelector((state) => state.games);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actionGames.getGames());
-  }, []);
+    dispatch(actionGames.getGames(page));
+  }, [page]);
 
-  console.log(games);
+  const handlePage = (e) => {
+    setPage(e.target.textContent);
+  };
+
   return (
-    <main className="classes.main">
+    <Container>
       <Grid container spacing={2} justifyContent="right">
         {!loading ? (
           games.map((i) => {
-            return (
-              <Grid item md={3} sm={6} xs={12} sx={{border : '1px solid red'}}>
-                <GameCard name={i.name} img={i.background_image} />
-              </Grid>
-            );
+            return <GameCard key={i.id} name={i.name} img={i.background_image} />;
           })
         ) : (
           <p>loading</p>
         )}
       </Grid>
-    </main>
+      <Pagination
+        onChange={(page) => {
+          handlePage(page);
+        }}
+        count={1000}
+        variant="outlined"
+        shape="rounded"
+        size="large"
+      />
+    </Container>
   );
 }
 

@@ -28,6 +28,28 @@ export const gameReducer = (state = initialState, action) => {
         ...state,
         error: true,
       };
+
+    /*  */
+
+    case actionType.SET_GAMES_SEARCH:
+      return {
+        ...state,
+        games: [],
+        loading: true,
+        error: false,
+      };
+    case actionType.SET_GAMES_SEARCH_SUCCESS:
+      return {
+        ...state,
+        games: payload,
+        loading: false,
+        error: false,
+      };
+    case actionType.SET_GAMES_SEARCH_ERROR:
+      return {
+        ...state,
+        error: true,
+      };
     default:
       return {
         ...state,
